@@ -11,8 +11,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install platformio
-      - run: cd wled && pio run -e esp32s3dev_16MB_opi
+      - run: cd wled && pio run -e s3_audio
       - uses: actions/upload-artifact@v4
         with:
           name: wled-s3-16mb-audio
-          path: wled/.pio/build/esp32s3dev_16MB_opi/firmware.bin
+          path: wled/.pio/build/s3_audio/firmware.bin
