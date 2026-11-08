@@ -6,13 +6,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: git clone --depth 1 https://github.com/MoonModules/WLED.git wled
-      - run: cp platformio_override.ini wled/
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install platformio
-      - run: cd wled && pio run -e s3_audio
+      - run: cd wled && pio run -e esp32s3dev_16MB_opi
       - uses: actions/upload-artifact@v4
         with:
           name: wled-s3-16mb-audio
-          path: wled/.pio/build/s3_audio/firmware.bin
+          path: wled/.pio/build/esp32s3dev_16MB_opi/firmware.bin
