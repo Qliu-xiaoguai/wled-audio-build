@@ -1,0 +1,17 @@
+name: build-wled-audio
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: git clone --depth 1 https://github.com/wled/WLED.git wled
+      - run: cp platformio_override.ini wled/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install platformio
+      - run: cd wled && pio run -e esp32s3dev_16MB_opi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wled-s3-16mb-audio
+          path: wled/.pio/build/esp32s3dev_16MB_opi/firmware.bin
