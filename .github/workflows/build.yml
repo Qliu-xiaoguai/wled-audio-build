@@ -6,7 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: git clone --depth 1 https://github.com/wled/WLED.git wled
-      - run: git clone --depth 1 https://github.com/MoonModules/WLED.git mm
+      - run: git clone --depth 1 --branch main https://github.com/MoonModules/WLED-MM.git mm
+      - run: ls mm/usermods | head
       - run: cp -r mm/usermods/audioreactive wled/usermods/
       - run: cp platformio_override.ini wled/
       - uses: actions/setup-python@v5
